@@ -89,13 +89,34 @@ let insults = [
   'Are you always this stupid or is today a special occasion?',
 ];
 
+let greetings = [
+  'Hello',
+  'Hey',
+  'Whats up',
+  "What's shaking bacon",
+  'Sup',
+  'Salutations',
+  'Greetings',
+];
+
 client.on('messageCreate', (message) => {
+  let userMessage = message.content.substring(1);
   if (message.content.startsWith('!')) {
-    if (message.content.substring(1) === 'ping') {
+    if (userMessage === 'clank') {
       message.reply('Clank reporting for duty.');
-    } else if (message.content.substring(1) === 'insult') {
+    } else if (userMessage === 'insult') {
       let randomNumber = Math.ceil(Math.random() * insults.length);
       message.reply(insults[randomNumber]);
+    } else if (
+      userMessage === 'hi' ||
+      userMessage === 'hello' ||
+      userMessage === 'hey' ||
+      userMessage === 'sup'
+    ) {
+      let randomNumber = Math.ceil(Math.random() * greetings.length);
+      message.reply(greetings[randomNumber]);
+    } else if (userMessage === 'kys') {
+      message.reply('Pressing Alt + F4');
     }
   }
 });
